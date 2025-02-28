@@ -6,8 +6,16 @@ class SmartContract {
         this.project = new Project(projectName, budget);
     }
 
+    addAuditor(auditor) {
+        this.project.addAuditor(auditor);
+    }
+
     addMilestone(name, cost) {
         this.project.addMilestone(name, cost);
+    }
+
+    approveMilestone(name, auditor) {
+        this.project.approveMilestone(name, auditor);
     }
 
     makeTransaction(sender, receiver, amount) {

@@ -7,9 +7,9 @@ class Milestone {
         this.approvedBy = new Set();
     }
 
-    approve(auditor) {
+    approve(auditor, totalAuditors) {
         this.approvedBy.add(auditor);
-        if (this.approvedBy.size >= 2) {
+        if (this.approvedBy.size >= Math.ceil(totalAuditors / 2)) {
             this.status = "Aprobado";
         }
     }

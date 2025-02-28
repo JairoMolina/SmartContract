@@ -1,0 +1,64 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #A7D8F0;
+    color: #2D2D2D;
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado */
+header {
+    background-color: #0067C0;
+    color: #FFFFFF;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+/* Contenedor principal */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones */
+button {
+    background-color: #0067C0;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0053A0;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #E0E0E0;
+}
+
+th {
+    background-color: #0067C0;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}

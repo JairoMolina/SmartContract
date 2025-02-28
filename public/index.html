@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contract</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Gestión de Smart Contract</h1>
+</header>
+
+<section id="add-milestone">
+    <h2>Agregar Hito</h2>
+    <form id="milestone-form">
+        <input type="text" id="milestone-name" placeholder="Nombre del Hito" required>
+        <input type="number" id="milestone-cost" placeholder="Costo" required>
+        <button type="submit">Agregar</button>
+    </form>
+</section>
+
+<section id="transactions">
+    <h2>Realizar Transacción</h2>
+    <form id="transaction-form">
+        <input type="text" id="sender" placeholder="Remitente" required>
+        <input type="text" id="receiver" placeholder="Destinatario" required>
+        <input type="number" id="amount" placeholder="Monto" required>
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+<section id="milestones-list">
+    <h2>Lista de Hitos</h2>
+    <ul id="milestones"></ul>
+</section>
+
+<section id="transaction-history">
+    <h2>Historial de Transacciones</h2>
+    <ul id="transactions-list"></ul>
+</section>
+
+<script src="js/app.js"></script>
+</body>
+</html>

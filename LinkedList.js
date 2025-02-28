@@ -6,9 +6,9 @@ class LinkedList {
         this.head = null;
     }
 
-    // Agregar un nuevo nodo al final de la lista para mantener el orden cronológico
+    // Agregar un nuevo nodo al final de la lista
     add(data) {
-        const newNode = new Node({ ...data, timestamp: new Date() });
+        const newNode = new Node(data); // data debe ser un objeto ya estructurado
         if (!this.head) {
             this.head = newNode;
         } else {

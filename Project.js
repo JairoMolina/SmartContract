@@ -2,8 +2,14 @@
 import LinkedList from './LinkedList.js';
 import Milestone from './Milestone.js';
 
+// Generar un ID único para cada contrato
+function generateUniqueId() {
+    return 'SC-' + Date.now().toString(36) + '-' + Math.random().toString(36).substr(2, 9);
+}
+
 class Project {
     constructor(name, budget) {
+        this.id = generateUniqueId();
         this.name = name;
         this.budget = budget;
         this.milestones = new LinkedList();
@@ -13,14 +19,37 @@ class Project {
         this.transactions = new LinkedList();
     }
 
+    addAuditor(auditor) {
+        this.auditors.add(auditor);
+    }
+
     addMilestone(name, cost) {
         if (cost > this.budget) {
             console.log(`Error: Presupuesto insuficiente para el hito ${name}.`);
             return;
         }
         const milestone = new Milestone(name, cost);
+        console.log("Nuevo milestone creado:", milestone); // Depuración
         this.milestones.add(milestone);
         this.history.add({ action: "Milestone agregado", milestone: name, status: milestone.status });
+    }
+
+    approveMilestone(milestoneName, auditor) {
+        let current = this.milestones.head;
+        while (current) {
+            console.log("Tipo de current.data:", current.data.constructor.name); // Depuración
+            if (current.data.name === milestoneName) {
+                if (current.data instanceof Milestone) {
+                    current.data.approve(auditor, this.auditors.size);
+                    this.history.add({ action: "Milestone aprobado", milestone: milestoneName, auditor });
+                } else {
+                    console.error(`Error: ${milestoneName} no es una instancia válida de Milestone.`);
+                }
+                return;
+            }
+            current = current.next;
+        }
+        console.log(`Hito "${milestoneName}" no encontrado.`);
     }
 
     makeTransaction(sender, receiver, amount) {
