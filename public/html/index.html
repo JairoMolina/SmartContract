@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de SmartContract</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<!-- Encabezado -->
+<header>
+    <h1>Sistema de SmartContract</h1>
+</header>
+
+<div class="menu-container">
+    <h2>Menú de Acciones</h2>
+    <button class="action-button" onclick="showForm('create-project')">Crear Proyecto</button>
+    <button class="action-button" onclick="showForm('add-auditor')">Agregar Auditor</button>
+    <button class="action-button" onclick="showForm('add-milestone')">Agregar Hito</button>
+    <button class="action-button" onclick="showForm('approve-milestone')">Aprobar Hito</button>
+    <button class="action-button" onclick="showForm('make-transaction')">Realizar Transacción</button>
+    <button class="action-button" onclick="showHistory()">Ver Historial del Proyecto</button>
+    <button class="action-button" onclick="showForm('view-transactions')">Ver Transacciones de Usuario</button>
+
+    <!-- Formularios de acción -->
+    <div id="create-project" class="form-container">
+        <h3>Crear Nuevo Proyecto</h3>
+        <div class="input-group">
+            <label for="project-name">Nombre del Proyecto:</label>
+            <input type="text" id="project-name" placeholder="Ej: Construcción de Carretera">
+        </div>
+        <div class="input-group">
+            <label for="project-budget">Presupuesto:</label>
+            <input type="number" id="project-budget" placeholder="Ej: 10000">
+        </div>
+        <button class="submit-btn" onclick="createProject()">Crear Proyecto</button>
+    </div>
+
+    <div id="add-auditor" class="form-container">
+        <h3>Agregar Nuevo Auditor</h3>
+        <div class="input-group">
+            <label for="auditor-name">Nombre del Auditor:</label>
+            <input type="text" id="auditor-name" placeholder="Ej: Auditor1">
+        </div>
+        <button class="submit-btn" onclick="addAuditor()">Agregar Auditor</button>
+    </div>
+
+    <div id="add-milestone" class="form-container">
+        <h3>Agregar Nuevo Hito</h3>
+        <div class="input-group">
+            <label for="milestone-name">Nombre del Hito:</label>
+            <input type="text" id="milestone-name" placeholder="Ej: Cimentación">
+        </div>
+        <div class="input-group">
+            <label for="milestone-cost">Costo:</label>
+            <input type="number" id="milestone-cost" placeholder="Ej: 3000">
+        </div>
+        <button class="submit-btn" onclick="addMilestone()">Agregar Hito</button>
+    </div>
+
+    <div id="approve-milestone" class="form-container">
+        <h3>Aprobar Hito</h3>
+        <div class="input-group">
+            <label for="approve-milestone-name">Nombre del Hito:</label>
+            <input type="text" id="approve-milestone-name" placeholder="Ej: Cimentación">
+        </div>
+        <div class="input-group">
+            <label for="approving-auditor">Auditor Aprobador:</label>
+            <input type="text" id="approving-auditor" placeholder="Ej: Auditor1">
+        </div>
+        <button class="submit-btn" onclick="approveMilestone()">Aprobar Hito</button>
+    </div>
+
+    <div id="make-transaction" class="form-container">
+        <h3>Realizar Transacción</h3>
+        <div class="input-group">
+            <label for="sender">Remitente:</label>
+            <input type="text" id="sender" placeholder="Ej: Gobierno">
+        </div>
+        <div class="input-group">
+            <label for="receiver">Destinatario:</label>
+            <input type="text" id="receiver" placeholder="Ej: Contratista">
+        </div>
+        <div class="input-group">
+            <label for="amount">Monto:</label>
+            <input type="number" id="amount" placeholder="Ej: 3000">
+        </div>
+        <button class="submit-btn" onclick="makeTransaction()">Realizar Transacción</button>
+    </div>
+
+    <div id="view-transactions" class="form-container">
+        <h3>Ver Transacciones de Usuario</h3>
+        <div class="input-group">
+            <label for="user">Usuario:</label>
+            <input type="text" id="user" placeholder="Ej: Gobierno">
+        </div>
+        <button class="submit-btn" onclick="viewTransactions()">Ver Transacciones</button>
+    </div>
+
+    <div id="message-area">
+        <!-- Aquí se mostrarán los mensajes y resultados -->
+        <p>Bienvenido al Sistema de SmartContract. Seleccione una acción para comenzar.</p>
+    </div>
+
+    <div id="project-history">
+        <!-- Aquí se mostrará el historial del proyecto -->
+    </div>
+</div>
+
+<!-- Pie de página -->
+<footer>
+    <p>&copy; 2025 Sistema de SmartContract | Todos los derechos reservados</p>
+</footer>
+
+<script type="module" src="../js/app.js"></script>
+</body>
+</html>

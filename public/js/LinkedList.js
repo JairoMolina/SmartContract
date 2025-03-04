@@ -20,7 +20,7 @@ class LinkedList {
         }
     }
 
-    // Eliminar un nodo basado en una condición
+    // Eliminar un nodo basado en una condicion
     remove(condition) {
         if (!this.head) return;
 

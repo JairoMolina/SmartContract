@@ -1,64 +1,128 @@
-/* Estilos generales */
+/* Estilo general */
 body {
     font-family: Arial, sans-serif;
-    background-color: #A7D8F0;
-    color: #2D2D2D;
+    text-align: center;
+    background-color: #F5F5F5; /* Gris claro */
+    color: #1A2B5F; /* Azul marino */
     margin: 0;
     padding: 0;
 }
 
 /* Encabezado */
 header {
-    background-color: #0067C0;
-    color: #FFFFFF;
-    padding: 15px;
-    text-align: center;
-    font-size: 1.5em;
-}
-
-/* Contenedor principal */
-.container {
-    width: 80%;
-    margin: 20px auto;
-    background-color: #FFFFFF;
+    background-color: #1A2B5F; /* Azul marino */
+    color: white;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 24px;
+    text-align: center;
 }
 
-/* Botones */
-button {
-    background-color: #0067C0;
-    color: #FFFFFF;
-    border: none;
-    padding: 10px 15px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #0053A0;
-}
-
-/* Tablas */
-table {
+/* Estilo para el pie de página */
+footer {
+    background-color: #1A2B5F; /* Azul marino */
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    border-collapse: collapse;
+    text-align: center;
+}
+
+/* Estilo para el contenido principal */
+h1 {
+    color: white; /* Azul claro */
+}
+
+h2 {
+    color: #1A2B5F;
     margin-top: 20px;
 }
 
-table, th, td {
-    border: 1px solid #E0E0E0;
+/* Estilos para formularios */
+.form-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-th {
-    background-color: #0067C0;
-    color: #FFFFFF;
-    padding: 10px;
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
 }
 
-td {
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    border-color: #00A0E4; /* Azul claro */
+    outline: none;
+}
+
+/* Estilos generales de botones */
+.button-container button {
+    width: 250px; /* Asegura que todos los botones tengan el mismo ancho */
+    padding: 15px;
     text-align: center;
+    background-color: #00A0E4; /* Azul claro */
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none; /* Elimina el borde de los botones */
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Efecto hover para todos los botones */
+.button-container button:hover {
+    background-color: #1A2B5F; /* Azul marino */
+}
+
+/* Ajuste específico para "Inicio" y "Limpiar" */
+#goHome, #clearForm {
+    background-color: #1A2B5F; /* Azul marino */
+}
+
+#goHome:hover, #clearForm:hover {
+    background-color: #00A0E4; /* Azul claro */
+}
+
+/* Estilo para el contenedor de mensajes */
+#messageBox {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Mensajes de éxito */
+#messageBox.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Mensajes de error */
+#messageBox.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
