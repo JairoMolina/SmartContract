@@ -27,20 +27,18 @@ En Guatemala, la corrupción en proyectos de infraestructura pública ha sido un
 - 📱 Interfaz de usuario responsiva  
 
 ## 📊 Estructura del Proyecto
-SmartContract/
-├── html/
-    └── index.html
-├── css/
-│   └── styles.css
-├── js/
-│   ├── SmartContract.js       # Contrato principal
-│   ├── LinkedList.js          # Implementación de lista enlazada
-│   ├── UserList.js            # Gestión de usuarios
-│   ├── ProjectList.js         # Gestión de proyectos
-│   ├── ProjectActions.js      # Acciones sobre proyectos
-│   ├── ExampleData.js         # Datos de ejemplo
-│   └── ui.js                  # Funciones de interfaz de usuario
-
+📂 SmartContract/ 
+├── 📄 index.html 
+├── 📁 css/ 
+│ └── 🎨 styles.css 
+├── 📁 js/ 
+│ ├── 📜 SmartContract.js # Contrato principal 
+│ ├── 📜 LinkedList.js # Implementación de lista enlazada 
+│ ├── 📜 UserList.js # Gestión de usuarios 
+│ ├── 📜 ProjectList.js # Gestión de proyectos 
+│ ├── 📜 ProjectActions.js # Acciones sobre proyectos 
+│ ├── 📜 ExampleData.js # Datos de ejemplo 
+│ └── 📜 ui.js # Funciones de interfaz de usuario
 
 ## 🔍 Funcionalidades Principales
 
