@@ -1,9 +1,7 @@
-// Node.js - Representa un nodo en la lista enlazada
 class Node {
     constructor(data) {
-        this.data = data;
-        this.next = null;
+        this.data = data; // Datos de la transacción
+        this.next = null; // Referencia al siguiente nodo
     }
 }
-
 export default Node;

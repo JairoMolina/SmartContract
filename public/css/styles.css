@@ -1,128 +1,267 @@
-/* Estilo general */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #F5F5F5; /* Gris claro */
-    color: #1A2B5F; /* Azul marino */
-    margin: 0;
-    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
-/* Encabezado */
 header {
-    background-color: #1A2B5F; /* Azul marino */
-    color: white;
-    padding: 20px;
-    font-size: 24px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-/* Estilo para el pie de página */
-footer {
-    background-color: #1A2B5F; /* Azul marino */
-    color: white;
-    padding: 10px;
-    font-size: 14px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-/* Estilo para el contenido principal */
-h1 {
-    color: white; /* Azul claro */
-}
-
-h2 {
-    color: #1A2B5F;
-    margin-top: 20px;
-}
-
-/* Estilos para formularios */
-.form-container {
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 400px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.input-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.input-group label {
-    display: block;
+#currentUserRole {
     font-weight: bold;
-    margin-bottom: 5px;
+    color: #3498db;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-.input-group input:focus {
-    border-color: #00A0E4; /* Azul claro */
-    outline: none;
-}
-
-/* Estilos generales de botones */
-.button-container button {
-    width: 250px; /* Asegura que todos los botones tengan el mismo ancho */
-    padding: 15px;
-    text-align: center;
-    background-color: #00A0E4; /* Azul claro */
+#logoutButton {
+    padding: 8px 15px;
+    background-color: #e74c3c;
     color: white;
-    font-size: 18px;
-    border-radius: 8px;
-    border: none; /* Elimina el borde de los botones */
-    transition: background-color 0.3s ease;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-/* Efecto hover para todos los botones */
-.button-container button:hover {
-    background-color: #1A2B5F; /* Azul marino */
+#logoutButton:hover {
+    background-color: #c0392b;
 }
 
-/* Ajuste específico para "Inicio" y "Limpiar" */
-#goHome, #clearForm {
-    background-color: #1A2B5F; /* Azul marino */
-}
-
-#goHome:hover, #clearForm:hover {
-    background-color: #00A0E4; /* Azul claro */
-}
-
-/* Estilo para el contenedor de mensajes */
-#messageBox {
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 20px;
-    max-width: 400px;
-    margin: 0 auto;
+h1, h2, h3 {
+    color: #2c3e50;
     text-align: center;
 }
 
-/* Mensajes de éxito */
-#messageBox.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-/* Mensajes de error */
-#messageBox.error {
+.card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, select, button, textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button.approve {
+    background-color: #27ae60;
+}
+
+button.approve:hover {
+    background-color: #219653;
+}
+
+button.reject {
+    background-color: #e74c3c;
+}
+
+button.reject:hover {
+    background-color: #c0392b;
+}
+
+button.finalize {
+    background-color: #9b59b6;
+}
+
+button.finalize:hover {
+    background-color: #8e44ad;
+}
+
+button.delete {
+    background-color: #e74c3c;
+    padding: 5px 10px;
+    font-size: 0.9em;
+}
+
+button.delete:hover {
+    background-color: #c0392b;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: #3498db;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+}
+
+.link-button:hover {
+    color: #2980b9;
+    background: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.status-pending {
+    background-color: #ffeaa7;
+    color: #d35400;
+}
+
+.status-in-progress {
+    background-color: #81ecec;
+    color: #00b894;
+}
+
+.status-completed {
+    background-color: #55efc4;
+    color: #00b894;
+}
+
+.status-rejected {
+    background-color: #fab1a0;
+    color: #d63031;
+}
+
+.notification {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
     background-color: #f8d7da;
     color: #721c24;
-    border: 1px solid #f5c6cb;
+}
+
+.project-details {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.project-phase {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e9f7fe;
+    border-radius: 4px;
+}
+
+.votes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.vote-count {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.tab.active {
+    background-color: white;
+    border-bottom: 1px solid white;
+    margin-bottom: -1px;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.empty-message {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 20px;
+}
+
+.hidden {
+    display: none !important;
 }

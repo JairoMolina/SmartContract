@@ -3,115 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de SmartContract</title>
+    <title>Smart Contract - Gestión de Proyectos de Construcción</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-<!-- Encabezado -->
-<header>
-    <h1>Sistema de SmartContract</h1>
-</header>
-
-<div class="menu-container">
-    <h2>Menú de Acciones</h2>
-    <button class="action-button" onclick="showForm('create-project')">Crear Proyecto</button>
-    <button class="action-button" onclick="showForm('add-auditor')">Agregar Auditor</button>
-    <button class="action-button" onclick="showForm('add-milestone')">Agregar Hito</button>
-    <button class="action-button" onclick="showForm('approve-milestone')">Aprobar Hito</button>
-    <button class="action-button" onclick="showForm('make-transaction')">Realizar Transacción</button>
-    <button class="action-button" onclick="showHistory()">Ver Historial del Proyecto</button>
-    <button class="action-button" onclick="showForm('view-transactions')">Ver Transacciones de Usuario</button>
-
-    <!-- Formularios de acción -->
-    <div id="create-project" class="form-container">
-        <h3>Crear Nuevo Proyecto</h3>
-        <div class="input-group">
-            <label for="project-name">Nombre del Proyecto:</label>
-            <input type="text" id="project-name" placeholder="Ej: Construcción de Carretera">
+    <header>
+        <h1>Smart Contract - Gestión de Proyectos de Construcción</h1>
+        <div class="user-info">
+            <span id="currentUserRole">Rol: Cargando...</span>
+            <button id="logoutButton">Cerrar sesión</button>
         </div>
-        <div class="input-group">
-            <label for="project-budget">Presupuesto:</label>
-            <input type="number" id="project-budget" placeholder="Ej: 10000">
-        </div>
-        <button class="submit-btn" onclick="createProject()">Crear Proyecto</button>
+    </header>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="new-project">Nuevo Proyecto</div>
+        <div class="tab" data-tab="active-projects">Proyectos Activos</div>
+        <div class="tab" data-tab="completed-projects">Proyectos Finalizados</div>
+        <div class="tab" data-tab="users">Constructoras</div>
+        <div class="tab" data-tab="auditors" id="auditorsTab">Auditores</div>
     </div>
-
-    <div id="add-auditor" class="form-container">
-        <h3>Agregar Nuevo Auditor</h3>
-        <div class="input-group">
-            <label for="auditor-name">Nombre del Auditor:</label>
-            <input type="text" id="auditor-name" placeholder="Ej: Auditor1">
+    
+    <div id="new-project" class="tab-content active">
+        <div class="card">
+            <h2>Proponer Nuevo Proyecto</h2>
+            <form id="newProjectForm">
+                <input type="text" id="projectName" placeholder="Nombre del proyecto" required>
+                <input type="text" id="constructorName" placeholder="Nombre de la constructora" required>
+                <textarea id="projectDescription" placeholder="Descripción detallada del proyecto" required></textarea>
+                <input type="number" id="initialBudget" placeholder="Presupuesto inicial (Q)" required min="0">
+                <button type="submit">Proponer Proyecto</button>
+            </form>
+            <div id="projectSuccess" class="notification success">
+                Proyecto propuesto con éxito. Esperando aprobación de los auditores.
+            </div>
         </div>
-        <button class="submit-btn" onclick="addAuditor()">Agregar Auditor</button>
     </div>
-
-    <div id="add-milestone" class="form-container">
-        <h3>Agregar Nuevo Hito</h3>
-        <div class="input-group">
-            <label for="milestone-name">Nombre del Hito:</label>
-            <input type="text" id="milestone-name" placeholder="Ej: Cimentación">
+    
+    <div id="active-projects" class="tab-content">
+        <div class="card">
+            <h2>Proyectos Activos</h2>
+            <div id="activeProjectsList">
+                <p class="empty-message">No hay proyectos activos en este momento.</p>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="milestone-cost">Costo:</label>
-            <input type="number" id="milestone-cost" placeholder="Ej: 3000">
-        </div>
-        <button class="submit-btn" onclick="addMilestone()">Agregar Hito</button>
     </div>
-
-    <div id="approve-milestone" class="form-container">
-        <h3>Aprobar Hito</h3>
-        <div class="input-group">
-            <label for="approve-milestone-name">Nombre del Hito:</label>
-            <input type="text" id="approve-milestone-name" placeholder="Ej: Cimentación">
+    
+    <div id="completed-projects" class="tab-content">
+        <div class="card">
+            <h2>Proyectos Finalizados</h2>
+            <table id="completedProjectsTable">
+                <thead>
+                    <tr>
+                        <th>Proyecto</th>
+                        <th>Constructora</th>
+                        <th>Presupuesto Final</th>
+                        <th>Fecha Finalización</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="completedProjectsTableBody">
+                </tbody>
+            </table>
+            <p class="empty-message" id="noCompletedProjects">No hay proyectos finalizados en este momento.</p>
         </div>
-        <div class="input-group">
-            <label for="approving-auditor">Auditor Aprobador:</label>
-            <input type="text" id="approving-auditor" placeholder="Ej: Auditor1">
-        </div>
-        <button class="submit-btn" onclick="approveMilestone()">Aprobar Hito</button>
     </div>
-
-    <div id="make-transaction" class="form-container">
-        <h3>Realizar Transacción</h3>
-        <div class="input-group">
-            <label for="sender">Remitente:</label>
-            <input type="text" id="sender" placeholder="Ej: Gobierno">
+    
+    <div id="users" class="tab-content">
+        <div class="container">
+            <div class="card">
+                <h2>Registrar Constructora</h2>
+                <form id="registerUserForm">
+                    <input type="text" id="userName" placeholder="Nombre de la constructora" required>
+                    <button type="submit">Registrar Constructora</button>
+                </form>
+                <div id="userSuccess" class="notification success">
+                    Constructora registrada con éxito
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Constructoras Registradas</h2>
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="receiver">Destinatario:</label>
-            <input type="text" id="receiver" placeholder="Ej: Contratista">
+    </div>
+    
+    <div id="auditors" class="tab-content">
+        <div class="container">
+            <div class="card">
+                <h2>Registrar Auditor</h2>
+                <form id="registerAuditorForm">
+                    <input type="text" id="auditorName" placeholder="Nombre del auditor" required>
+                    <input type="text" id="auditorCode" placeholder="Código de auditor" required>
+                    <button type="submit">Registrar Auditor</button>
+                </form>
+                <div id="auditorSuccess" class="notification success">
+                    Auditor registrado con éxito
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Auditores Registrados</h2>
+                <table id="auditorsTable">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Código</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="auditorsTableBody">
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="amount">Monto:</label>
-            <input type="number" id="amount" placeholder="Ej: 3000">
+    </div>
+    
+    <template id="activeProjectTemplate">
+        <div class="project-details">
+            <h3 class="project-name">Nombre del Proyecto</h3>
+            <p><strong>Constructora:</strong> <span class="constructor-name">Nombre de la Constructora</span></p>
+            <p><strong>Estado:</strong> <span class="project-status status">Pendiente</span></p>
+            <p><strong>Presupuesto actual:</strong> <span class="project-budget">Q0</span></p>
+            <p><strong>Descripción:</strong> <span class="project-description">Descripción del proyecto</span></p>
+            
+            <div class="project-phase">
+                <h4>Fase actual: <span class="phase-name">Planificación Inicial</span></h4>
+                <div class="vote-status">
+                    <p><span class="vote-count">0/0</span> auditores han aprobado esta fase</p>
+                </div>
+                
+                <div class="auditor-actions">
+                    <div class="votes">
+                        <button class="approve">Aprobar</button>
+                        <button class="reject">Rechazar</button>
+                    </div>
+                </div>
+                
+                <div class="constructor-actions">
+                    <form class="next-phase-form">
+                        <h4>Solicitar siguiente fase</h4>
+                        <textarea class="phase-description" placeholder="Descripción de avances y próximos pasos"></textarea>
+                        <input type="number" class="additional-budget" placeholder="Presupuesto adicional requerido (Q)" min="0">
+                        <button type="submit" class="request-next-phase">Solicitar aprobación</button>
+                        <button type="button" class="finalize">Marcar como finalizado</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button class="submit-btn" onclick="makeTransaction()">Realizar Transacción</button>
-    </div>
+    </template>
 
-    <div id="view-transactions" class="form-container">
-        <h3>Ver Transacciones de Usuario</h3>
-        <div class="input-group">
-            <label for="user">Usuario:</label>
-            <input type="text" id="user" placeholder="Ej: Gobierno">
-        </div>
-        <button class="submit-btn" onclick="viewTransactions()">Ver Transacciones</button>
-    </div>
-
-    <div id="message-area">
-        <!-- Aquí se mostrarán los mensajes y resultados -->
-        <p>Bienvenido al Sistema de SmartContract. Seleccione una acción para comenzar.</p>
-    </div>
-
-    <div id="project-history">
-        <!-- Aquí se mostrará el historial del proyecto -->
-    </div>
-</div>
-
-<!-- Pie de página -->
-<footer>
-    <p>&copy; 2025 Sistema de SmartContract | Todos los derechos reservados</p>
-</footer>
-
-<script type="module" src="../js/app.js"></script>
+    <script type="module" src="../js/app.js"></script>
 </body>
 </html>

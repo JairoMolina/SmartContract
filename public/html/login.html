@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso al Sistema de Gestión de Proyectos</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .login-container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .login-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+        }
+        
+        .login-title {
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .login-form input, .login-form select {
+            margin-bottom: 15px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .login-form button {
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-form button:hover {
+            background-color: #2980b9;
+        }
+        
+        .login-options {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .login-error {
+            color: #e74c3c;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">
+            <i>GP</i>
+        </div>
+        <h1 class="login-title">Sistema de Gestión de Proyectos</h1>
+        
+        <form id="loginForm" class="login-form">
+            <select id="userType" required>
+                <option value="">Seleccione su tipo de usuario</option>
+                <option value="gobierno">Gobierno</option>
+                <option value="auditor">Auditor</option>
+                <option value="constructor">Constructor</option>
+            </select>
+            <input type="text" id="userName" placeholder="Nombre de usuario" required>
+            <input type="password" id="accessCode" placeholder="Código de acceso" required>
+            <button type="submit">Ingresar al Sistema</button>
+        </form>
+        
+        <div id="loginError" class="login-error">
+            Código de acceso incorrecto o usuario no válido. Por favor intente nuevamente.
+        </div>
+        
+        <div class="login-options">
+            <button id="enterAsVisitor" class="link-button">Entrar como visitante</button>
+        </div>
+    </div>
+
+    <script>
+        const userCredentials = {
+            gobierno: {
+                'admin': 'GOB001'
+            },
+            auditor: {
+                'Auditor 1': 'AUD001',
+                'Auditor 2': 'AUD002',
+                'Auditor 3': 'AUD003'
+            },
+            constructor: {
+                'Constructora A': 'CON001',
+                'Constructora B': 'CON002'
+            }
+        };
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userType = document.getElementById('userType').value;
+            const userName = document.getElementById('userName').value;
+            const accessCode = document.getElementById('accessCode').value;
+            
+            if (userCredentials[userType] && 
+                userCredentials[userType][userName] === accessCode) {
+                
+                sessionStorage.setItem('userRole', userType);
+                sessionStorage.setItem('userName', userName);
+                
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+        
+        document.getElementById('enterAsVisitor').addEventListener('click', function() {
+            sessionStorage.setItem('userRole', 'visitante');
+            sessionStorage.removeItem('userName');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

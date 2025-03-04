@@ -1,17 +1,19 @@
-// LinkedList.js - Implementa la estructura de lista enlazada
+// Importa la clase Node para los nodos de la lista
 import Node from './Node.js';
 
 class LinkedList {
     constructor() {
-        this.head = null;
+        this.head = null; // Primer nodo de la lista
     }
 
-    // Agregar un nuevo nodo al final de la lista
-    add(data) {
-        const newNode = new Node(data); // data debe ser un objeto ya estructurado
+    // Agrega una transacción al final de la lista
+    addTransaction(data) {
+        const newNode = new Node(data);
         if (!this.head) {
+            // Si la lista está vacía
             this.head = newNode;
         } else {
+            // Busca el último nodo
             let current = this.head;
             while (current.next) {
                 current = current.next;
@@ -20,27 +22,8 @@ class LinkedList {
         }
     }
 
-    // Eliminar un nodo basado en una condicion
-    remove(condition) {
-        if (!this.head) return;
-
-        if (condition(this.head.data)) {
-            this.head = this.head.next;
-            return;
-        }
-
-        let current = this.head;
-        while (current.next) {
-            if (condition(current.next.data)) {
-                current.next = current.next.next;
-                return;
-            }
-            current = current.next;
-        }
-    }
-
-    // Mostrar todos los elementos de la lista
-    display() {
+    // Muestra todas las transacciones en consola
+    displayTransactions() {
         let current = this.head;
         while (current) {
             console.log(current.data);
@@ -48,5 +31,4 @@ class LinkedList {
         }
     }
 }
-
 export default LinkedList;
